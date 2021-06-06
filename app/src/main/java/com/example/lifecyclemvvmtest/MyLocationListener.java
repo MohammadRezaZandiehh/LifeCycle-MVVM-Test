@@ -19,8 +19,12 @@ class MyLocationListener implements LifecycleObserver {
 
     private LocationListener locationListener;
 
-    public MyLocationListener(LocationListener locationListener) {
+    public MyLocationListener(LocationListener locationListener, Lifecycle lifecycle) {
         this.locationListener = locationListener;
+
+        if (lifecycle.getCurrentState().isAtLeast(Lifecycle.State.CREATED)){
+            // TODO: 8/19/2020
+        }
     }
 
 
