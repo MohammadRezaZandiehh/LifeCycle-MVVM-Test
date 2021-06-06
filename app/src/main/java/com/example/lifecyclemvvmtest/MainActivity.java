@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("MainActivity", "onUpdate: " + location);
             }
         });
+        getLifecycle().addObserver(myLocationListener);
 
     }
 
