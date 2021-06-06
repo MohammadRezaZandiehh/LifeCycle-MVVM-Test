@@ -3,12 +3,17 @@ package com.example.lifecyclemvvmtest;
 import android.content.Context;
 import android.location.LocationListener;
 
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.LifecycleRegistry;
+import androidx.lifecycle.OnLifecycleEvent;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.security.auth.callback.Callback;
 
-class MyLocationListener {
+class MyLocationListener implements LifecycleObserver {
 
     private Timer timer;
 
@@ -18,6 +23,8 @@ class MyLocationListener {
         this.locationListener = locationListener;
     }
 
+
+    @OnLifecycleEvent(value = Lifecycle.Event.ON_START)
     void start() {
         // connect to system location service
 
@@ -30,6 +37,8 @@ class MyLocationListener {
         }, 0, 1000);
     }
 
+
+    @OnLifecycleEvent(value = Lifecycle.Event.ON_STOP)
     void stop() {
         // disconnect from system location service
 

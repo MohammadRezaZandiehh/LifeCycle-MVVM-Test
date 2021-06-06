@@ -20,18 +20,19 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("MainActivity", "onUpdate: " + location);
             }
         });
+
     }
 
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        myLocationListener.start();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        myLocationListener.stop();
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        myLocationListener.start();
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        myLocationListener.stop();
+//    }
 }
