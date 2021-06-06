@@ -1,6 +1,7 @@
 package com.example.lifecyclemvvmtest;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,26 +15,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myLocationListener = new MyLocationListener(new MyLocationListener.LocationListener() {
+        myLocationListener = new MyLocationListener();
+        myLocationListener.getMutableLiveDataLocation().observe(this, new Observer<String>() {
             @Override
-            public void onUpdate(String location) {
-                Log.i("MainActivity", "onUpdate: " + location);
+            public void onChanged(String s) {
+                Log.i("MainActivity", "onChange" + s);
             }
-        }, getLifecycle());
-        getLifecycle().addObserver(myLocationListener);
-
+        });
     }
 
-
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        myLocationListener.start();
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        myLocationListener.stop();
-//    }
 }
