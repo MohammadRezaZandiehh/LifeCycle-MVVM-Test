@@ -3,6 +3,7 @@ package com.example.lifecyclemvvmtest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,7 +14,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myLocationListener = new MyLocationListener(this);
+        myLocationListener = new MyLocationListener(new MyLocationListener.LocationListener() {
+            @Override
+            public void onUpdate(String location) {
+                Log.i("MainActivity", "onUpdate: " + location);
+            }
+        });
     }
 
 
