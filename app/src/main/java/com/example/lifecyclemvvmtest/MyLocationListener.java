@@ -8,13 +8,14 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleRegistry;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.ViewModel;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.security.auth.callback.Callback;
 
-class MyLocationListener {
+class MyLocationListener extends ViewModel {
 
     private Timer timer;
     private MutableLiveData<String> mutableLiveDataLocation = new MutableLiveData<>();
@@ -31,5 +32,12 @@ class MyLocationListener {
 
     public MutableLiveData<String> getMutableLiveDataLocation() {
         return mutableLiveDataLocation;
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        timer.cancel();
+        timer.purge();
     }
 }
